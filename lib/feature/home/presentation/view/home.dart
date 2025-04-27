@@ -75,8 +75,8 @@ class _HomeState extends State<Home> {
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: Colors.white,
-                      hintText: "Search destinations",
-                      prefixIcon: const Icon(Icons.search, color: Colors.grey),
+                      hintText: "     where do you wanna go ?",
+                      suffixIcon: const Icon(Icons.search, color: KPrimayColor),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30),
                         borderSide: BorderSide.none,

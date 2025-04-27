@@ -5,6 +5,8 @@ import 'package:travel/core/utils/router.dart';
 import 'package:travel/feature/authentication/data/repos/authentication_repo_impl.dart';
 import 'package:travel/feature/authentication/presentation/manager/cubit/authentication_cubit.dart';
 import 'package:travel/feature/authentication/presentation/view/login_view.dart';
+import 'package:travel/feature/home/presentation/view/home.dart';
+import 'package:travel/feature/home/presentation/view/home_screen_view.dart';
 
 void main() async {
   await Supabase.initialize(
@@ -23,13 +25,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => AuthenticationCubit(AuthenticationRepoImpl())),
+        BlocProvider(
+            create: (context) => AuthenticationCubit(AuthenticationRepoImpl())),
       ],
       child: MaterialApp(
-        home: const LoginView(),
+        home: Supabase.instance.client.auth.currentUser!.id == null
+            ? const LoginView()
+            : HomeScreenView(),
         routes: AppRouter.pageRoutes,
       ),
     );
   }
 }
-
