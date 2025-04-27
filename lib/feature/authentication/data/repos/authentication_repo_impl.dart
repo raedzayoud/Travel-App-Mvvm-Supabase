@@ -37,17 +37,18 @@ class AuthenticationRepoImpl implements AuthenticationRepo {
           email: email,
           password: password,
         );
-
         if (response.user == null) {
           return Left(ServeurFailure(
               errorsMessage: "Sign up failed. No user created."));
         }
+        String uid = supabase.auth.currentUser!.id;
 
         await supabase.from('users').insert({
-          'id': response.user!.id,
+          'id': uid,
           'email': email,
           'username': username,
           'phone': phone,
+          'password': password
         });
 
         return Right(null);

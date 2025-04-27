@@ -32,9 +32,9 @@ class _LoginViewBodyState extends State<LoginViewBody> {
         listener: (context, state) {
           if (state is LoginFailure) {
             snackbarerror(context, state.errorMessage);
+            print(state.errorMessage);
           }
           if (state is LoginSuccess) {
-           
             Navigator.of(context)
                 .pushNamedAndRemoveUntil("home", (route) => false);
           }
